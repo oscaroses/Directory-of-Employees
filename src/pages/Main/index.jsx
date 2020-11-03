@@ -1,6 +1,6 @@
 import React from 'react';
 import EmployeeList from "../../seed/theEmployees.json"
-import EmployeeTable from "../../components/EmployeeTable"
+import EmployeeTable from "../../components/Table"
 import ReactDOM from "react-dom";
 
 

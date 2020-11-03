@@ -1,46 +1,46 @@
 import React from "react";
 
 const useSortableData = (employees, config = null) => {
-  const [sortConfig, setSortConfig] = React.useState(config);
+  const [sortData, setSortData] = React.useState(config);
 
-  const sortedEmployees = React.useMemo(() => {
-    let sortableEmployees = [...employees];
-    if (sortConfig !== null) {
-      sortableEmployees.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
+  const sortEmps = React.useMemo(() => {
+    let sortEmps = [...employees];
+    if (sortData !== null) {
+      sortEmps.sort((a, b) => {
+        if (a[sortData.key] < b[sortData.key]) {
+          return sortData.direction === 'ascending' ? -1 : 1;
         }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
+        if (a[sortData.key] > b[sortData.key]) {
+          return sortData.direction === 'ascending' ? 1 : -1;
         }
         return 0;
       });
     }
-    return sortableEmployees;
-  }, [employees, sortConfig]);
+    return sortEmps;
+  }, [employees, sortData]);
 
   const requestSort = (key) => {
     let direction = 'ascending';
     if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === 'ascending'
+      sortData &&
+      sortData.key === key &&
+      sortData.direction === 'ascending'
     ) {
       direction = 'descending';
     }
-    setSortConfig({ key, direction });
+    setSortData({ key, direction });
   };
 
-  return { employees: sortedEmployees, requestSort, sortConfig };
+  return { employees: sortEmps, requestSort, sortData };
 };
 
-const EmployeeTable = (props) => {
-  const { employees, requestSort, sortConfig } = useSortableData(props.allemployees);
+const Table = (props) => {
+  const { employees, requestSort, sortData } = useSortableData(props.allemployees);
   const getClassNamesFor = (name) => {
-    if (!sortConfig) {
+    if (!sortData) {
       return;
     }
-    return sortConfig.key === name ? sortConfig.direction : undefined;
+    return sortData.key === name ? sortData.direction : undefined;
   };
 
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -114,4 +114,4 @@ const EmployeeTable = (props) => {
       )
 };
 
-export default EmployeeTable;
+export default Table;
