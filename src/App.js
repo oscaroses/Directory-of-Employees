@@ -1,12 +1,19 @@
-import React from 'react';
-import Header from './components/Header';
-import EmployeeTable from './components/EmployeeTable';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import './App.css';
+import Home from "./pages/Main";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <EmployeeTable />
+    <div>
+      <header className="App-header">
+        <h1>Directory of Employees</h1>
+      </header>
+      <body>
+        <Router>
+          <Route exact path="/" component={Home} />
+        </Router>
+      </body>
     </div>
   );
 }
