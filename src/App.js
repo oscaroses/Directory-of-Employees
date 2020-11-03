@@ -11,7 +11,7 @@ function App() {
       </header>
       <body>
         <Router>
-          <Route exact path="/" component={Home} />
+          <Route path="/" component={Home} />
         </Router>
       </body>
     </div>
